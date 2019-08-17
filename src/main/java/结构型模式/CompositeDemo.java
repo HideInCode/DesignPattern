@@ -1,3 +1,5 @@
+package 结构型模式;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,21 +22,20 @@ interface Component {
 class Composite implements Component {
     private String name;
     List<Component> list = new LinkedList<Component>();
-
+    
     public Composite(String name) {
         this.name = name;
     }
-
+    
     public void add(Component component) {
         list.add(component);
     }
-
+    
     public void remove(Component component) {
         list.remove(component);
     }
-
-
-
+    
+    
     public void process() {
         for (Component component : list) {
             component.process();
@@ -45,11 +46,11 @@ class Composite implements Component {
 //树叶
 class Leaf implements Component {
     private String name;
-
+    
     public Leaf(String name) {
         this.name = name;
     }
-
+    
     public void process() {
         System.out.println("leaf process");
     }
@@ -64,17 +65,16 @@ public class CompositeDemo {
         Composite component3 = new Composite("node3");
         Leaf leaf1 = new Leaf("leaf1");
         Leaf leaf2 = new Leaf("leaf2");
-
-
+        
+        
         //每一个composite中都有list可以add,所以可以搞很多个composite组合复杂的结构.
         root.add(component1);
         component1.add(component2);
         component2.add(leaf1);
-
+        
         root.add(component3);
         root.process();
     }
-
-
-
+    
+    
 }

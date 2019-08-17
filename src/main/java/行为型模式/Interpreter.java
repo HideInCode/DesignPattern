@@ -1,3 +1,5 @@
+package 行为型模式;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,14 +12,14 @@ import java.util.Map;
  * 这可能就是编译原理的一些操作吧
  */
 interface Expression {
-    int interpreter(Context context);
+    int interpreter(AppContext context);
 }
 
 
 //这个类就是用来共享变量的,全局变量的封装方式学到了
 abstract class NoTerminal implements Expression {
     protected Expression e1, e2;
-
+    
     public NoTerminal(Expression e1, Expression e2) {
         this.e1 = e1;
         this.e2 = e2;
@@ -25,54 +27,54 @@ abstract class NoTerminal implements Expression {
 }
 
 class Minus extends NoTerminal {
-
+    
     //注意这些变量,这个类也是集成Expression接口,同时组合了接口引用,这种同时具有is-a和has-a的情况,具有迭代的性质.
     //就是说旧的对象可以作为新的对象的变量
     public Minus(Expression e1, Expression e2) {
         super(e1, e2);
     }
-
-
-    public int interpreter(Context context) {
+    
+    
+    public int interpreter(AppContext context) {
         return this.e1.interpreter(context) - this.e2.interpreter(context);
     }
 }
 
 class Plus extends NoTerminal {
-
-
+    
+    
     public Plus(Expression e1, Expression e2) {
         super(e1, e2);
     }
-
-    public int interpreter(Context context) {
+    
+    public int interpreter(AppContext context) {
         return this.e1.interpreter(context) + this.e2.interpreter(context);
     }
 }
 
 
 class Terminal implements Expression {
-
+    
     private String var;
-
+    
     public Terminal(String var) {
         this.var = var;
     }
-
+    
     //terminal的对象最终要从这里获取值
-    public int interpreter(Context context) {
+    public int interpreter(AppContext context) {
         return context.lookup(this);
     }
 }
 
 
-class Context {
+class AppContext {
     private Map<Expression, Integer> map = new HashMap<Expression, Integer>();
-
+    
     public void add(Expression expression, Integer value) {
         map.put(expression, value);
     }
-
+    
     public int lookup(Expression expression) {
         return map.get(expression);
     }
@@ -80,24 +82,24 @@ class Context {
 
 public class Interpreter {
     public static void main(String[] args) {
-        Context context = new Context();
+        AppContext context = new AppContext();
         Terminal a = new Terminal("a");
         Terminal b = new Terminal("b");
         Terminal c = new Terminal("c");
-
-
+        
+        
         context.add(a, 4);
         context.add(b, 8);
         context.add(c, 2);
-
-
+        
+        
         //注意这些变量是共享的,对于plus和minus来说
         Plus plus = new Plus(a, b);
         Minus minus = new Minus(plus, c);
-
+        
         //这里是重点,minus调用解析,解析
         int result = minus.interpreter(context);
         System.out.println(result);
-
+        
     }
 }

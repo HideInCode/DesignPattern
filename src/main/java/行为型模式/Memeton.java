@@ -1,4 +1,4 @@
-package 典型模式;
+package 行为型模式;
 /**
  * 这个有意思:事务回滚,游戏存档,ctrl+z
  * 但是java可以用对象序列化,更加简单的实现.
@@ -81,7 +81,7 @@ class Originator {
 }
 
 
-public class MemetonDemo {
+public class Memeton {
 
     public static void main(String[] args) {
 

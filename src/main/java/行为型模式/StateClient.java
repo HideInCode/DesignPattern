@@ -1,4 +1,4 @@
-package 典型模式;
+package 行为型模式;
 
 
 //状态对应的操作抽象出来
@@ -46,7 +46,7 @@ class Context {
     }
 }
 
-public class RunoobStateDemo {
+public class StateClient {
     public static void main(String[] args) {
         Context context = new Context();
         System.out.println(context.getState());

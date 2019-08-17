@@ -1,15 +1,23 @@
-package PrototypeDemo;
+package 创建型模式.Prototype;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Unified Modeling Language
+ * 1.深克隆浅克隆的区别.
+ * 2.怎么实现深克隆.
+ *
  */
 
 public class User implements Cloneable, Serializable {
 
     private Date lastUpdateTime;
+    
     private int id;
 
     private Student student;
@@ -44,9 +52,9 @@ public class User implements Cloneable, Serializable {
 
 //深clone方案1,若引用是基本类型构成,克隆下引用
 //    public Object deepClone1() {
-//        PrototypeDemo.User user = null;
+//        创建型模式.Prototype.User user = null;
 //        try{
-//            user = (PrototypeDemo.User)super.clone();
+//            user = (创建型模式.Prototype.User)super.clone();
 //
 //            //引用对象再次克隆,要保证应用的对象也是基本类型构成,不然就还要层层clone
 //            user.student=this.student.clone();

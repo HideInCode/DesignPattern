@@ -1,5 +1,4 @@
-import javax.swing.*;
-import java.util.ResourceBundle;
+package 行为型模式;
 
 /**
  * 为什么:把行为请求者和处理者解耦.不同于责任链,没有过多的过滤层次.

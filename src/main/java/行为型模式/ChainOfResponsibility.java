@@ -1,4 +1,4 @@
-import java.util.HashMap;
+package 行为型模式;
 
 /**
  * 是什么:分开请求者和接受者
