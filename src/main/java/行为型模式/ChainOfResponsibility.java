@@ -6,10 +6,9 @@ package 行为型模式;
  * 无须关心请求的处理细节和请求的传递，所以职责链将请求的发送者和请求的处理者解耦了。
  * 在处理消息的时候以过滤很多道。
  * 怎么做:拦截的类都实现统一接口。统一实现处理请求和传递给下一个的方法(单向链表)
- * 不怎么流行
  */
 
-//就是个链表
+//就是个链表,注意继承表示is-a关系
 abstract class Handler {
     public static final int DEBUG = 0;
     public static final int WARN = 1;

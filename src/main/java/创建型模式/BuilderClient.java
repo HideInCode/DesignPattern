@@ -2,6 +2,8 @@ package 创建型模式;
 
 /**
  * 组装顺序不同引起的差异
+ * 参考StringBuilder 中的append,即时是append不同类型,也会返回相同的对象;
+ * 这样就不会对外公开对象生成细节;
  */
 class Product {
     private A pratA;

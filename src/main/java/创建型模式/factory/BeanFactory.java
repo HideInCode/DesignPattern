@@ -1,6 +1,6 @@
 package 创建型模式.factory;
 
-import 创建型模式.Prototype.Student;
+import 创建型模式.Student;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;

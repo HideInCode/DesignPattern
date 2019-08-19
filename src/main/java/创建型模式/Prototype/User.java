@@ -1,5 +1,7 @@
 package 创建型模式.Prototype;
 
+import 创建型模式.Student;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -9,8 +11,18 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * 使用场景:
+ * (1)类初始化需要消化非常多的资源,这个资源包括数据、硬件资源等,通过原型拷贝避免这些消耗。
+ * (2)通过new一个对象需要非常繁琐的数据准备或访问权限,可以使用原型模式。
+ * (3)一个对象需要提供给其他对象访问,而且各个调用者可能需要修改其值,可以考虑使用原型模式拷贝多个对象供调用者使用,即保护性拷贝
+ *
+ * 重点理解
  * 1.深克隆浅克隆的区别.
+ *  浅克隆:拷贝引用,引用的对象改会引起问题;
+ *  深克隆:创建新对象,不再指向原地址;
  * 2.怎么实现深克隆.
+ *  保证对象只有基本类型,没有引用类型;
+ *  序列化
  *
  */
 
