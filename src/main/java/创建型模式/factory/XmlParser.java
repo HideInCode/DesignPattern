@@ -61,7 +61,7 @@ public class XmlParser {
                     if (f.isFile()) {
                         result = f.getCanonicalPath();
                     }
-                    if (result.endsWith("context.xml")) {
+                    if (result.endsWith("beans.xml")) {
                         break;
                     }
                 }
