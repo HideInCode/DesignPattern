@@ -1,9 +1,12 @@
 package 创建型模式.factory;
 
-import 创建型模式.Student;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Set;
+import java.util.HashMap;
 
 /**
  * 创建对象,利用ioc思想
@@ -12,21 +15,32 @@ import java.util.Set;
  */
 public class BeanFactory {
     
-    public static Object getBeanById(String id) {
-        Set<Bean> beans = XmlParser.getBeans();
-        for (Bean bean : beans) {
-            if (id.equals(bean.getId())) {
-                return createObject(bean);
+    private static HashMap<String, Object> beans;
+    
+    static {
+        beans = new HashMap<>();
+        Document document = XmlUtil.getCfgDocument();
+        if (document != null) {
+            NodeList beansInXml = document.getElementsByTagName("bean");
+            for (int i = 0; i < beansInXml.getLength(); i++) {
+                Node item = beansInXml.item(i);
+                NamedNodeMap attributes = item.getAttributes();
+                Node id = attributes.getNamedItem("id");
+                Node claz = attributes.getNamedItem("class");
+                beans.put(id.getTextContent(), createObject(claz.getTextContent()));
             }
         }
-        return null;
     }
     
-    private static Object createObject(Bean bean) {
+    public static Object getBeanById(String id) {
+        return beans.get(id);
+    }
+    
+    private static Object createObject(String qualifyName) {
         Object newInstance = null;
         try {
             
-            Class<?> clazz = Class.forName(bean.getName());
+            Class<?> clazz = Class.forName(qualifyName);
             newInstance = clazz.getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
@@ -37,11 +51,9 @@ public class BeanFactory {
     
     public static void main(String[] args) {
         Object obj = getBeanById("student");
-        if (obj instanceof Student) {
-            Student student = (Student) obj;
-            student.setId(1);
-            System.out.println(student.getId());
-        }
+        Student student = (Student) obj;
+        student.setId(1);
+        System.out.println(student.getId());
     }
 }
 

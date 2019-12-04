@@ -1,6 +1,6 @@
 package 创建型模式.Prototype;
 
-import 创建型模式.Student;
+import 创建型模式.factory.Student;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

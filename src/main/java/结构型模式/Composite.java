@@ -21,7 +21,7 @@ interface Component {
 //树干
 class Master implements Component {
     private String name;
-    List<Component> list = new LinkedList<Component>();
+    List<Component> list = new LinkedList<>();
     
     public Master(String name) {
         this.name = name;
