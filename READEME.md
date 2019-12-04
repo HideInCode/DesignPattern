@@ -24,7 +24,7 @@
 ​	
 ------
 
-## 单一职责(Single Respnsibility)
+## 单一职责(Single Responsibility)
 
 ------
 
