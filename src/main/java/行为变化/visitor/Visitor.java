@@ -8,8 +8,8 @@ package 行为变化.visitor;
 
 abstract class Visitor {
     //访问具体类,给他做扩展,其实这里可以看出依赖具体类,违反依赖倒置原则.
-    public abstract void visitElementA();
+    public abstract void visitElementA(ElementA a);
     
-    public abstract void visitElementB();
+    public abstract void visitElementB(ElementB b);
     
 }

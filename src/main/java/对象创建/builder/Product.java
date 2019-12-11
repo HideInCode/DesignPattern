@@ -1,6 +1,8 @@
 package 对象创建.builder;
 
-
+/**
+ * 由两个组件构成的产品
+ */
 class Product {
     private A pratA;
     private B partB;

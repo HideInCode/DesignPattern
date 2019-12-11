@@ -1,12 +1,14 @@
 package 行为变化.visitor;
 
 class Visitor2 extends Visitor {
-    public void visitElementA() {
+    @Override
+    public void visitElementA(ElementA a) {
         System.out.println("visitor2对具体实现A的扩展");
         
     }
     
-    public void visitElementB() {
+    @Override
+    public void visitElementB(ElementB b) {
         System.out.println("visitor2对具体实现A的扩展");
         
     }
